@@ -2,13 +2,13 @@ package org.example;
 
 import io.qameta.allure.junit4.DisplayName;
 import org.apache.http.entity.ContentType;
-import org.example.mother.FatherOfMother;
+import org.example.mother.UserLoginInBeforeClass;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class ListOfOrders extends FatherOfMother { //Проверь, что в тело ответа возвращается список заказов
+public class ListOfOrders extends UserLoginInBeforeClass { //Проверь, что в тело ответа возвращается список заказов
 
     @Test
     @DisplayName("Проверка ручки получения списка заказов")

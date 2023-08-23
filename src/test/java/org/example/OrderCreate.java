@@ -3,7 +3,7 @@ package org.example;
 import io.qameta.allure.junit4.DisplayName;
 import org.apache.http.entity.ContentType;
 import org.example.dto.Order;
-import org.example.mother.FatherOfMother;
+import org.example.mother.UserLoginInBeforeClass;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,7 +14,7 @@ import java.util.List;
 import static io.restassured.RestAssured.given;
 
 @RunWith(Parameterized.class)
-public class OrderCreate extends FatherOfMother { //Чтобы протестировать создание заказа, нужно использовать параметризацию
+public class OrderCreate extends UserLoginInBeforeClass { //Чтобы протестировать создание заказа, нужно использовать параметризацию
     private final List<String> color;
 
     public OrderCreate(List<String> color) {

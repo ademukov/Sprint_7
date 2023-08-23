@@ -1,20 +1,24 @@
 package org.example.mother;
 
+import com.github.javafaker.Faker;
 import org.apache.http.entity.ContentType;
 import org.example.dto.CourierLogin;
+import org.example.dto.User;
 import org.hamcrest.Matchers;
 import org.junit.After;
 import org.junit.Before;
 
 import static io.restassured.RestAssured.given;
-import static org.example.constant.UserConstant.*;
 
-public class MotherOfCourierTest extends FatherOfMother {
+public class CreateAndDeleteUserInBeforeAfterClass extends UserLoginInBeforeClass {
     protected Integer courierId;
+    protected User user;
 
     @Before
     public void setUp() {
-        CourierLogin createCourierForLoginCheck = new CourierLogin(LOGIN, PASSWORD, FIRSTNAME);//создаем объект для создания курьера
+        Faker faker = new Faker();
+        user = new User(faker.name().fullName(), faker.internet().password(), faker.name().firstName());
+        CourierLogin createCourierForLoginCheck = new CourierLogin(user.getLogin(), user.getPassword(), user.getFirstName());//создаем объект для создания курьера
         //создаем курьера
         given()
                 .contentType(ContentType.APPLICATION_JSON.getMimeType()) // заполнили header
@@ -23,7 +27,7 @@ public class MotherOfCourierTest extends FatherOfMother {
                 .then()
                 .statusCode(201)
                 .body("ok", Matchers.equalTo(true));
-        CourierLogin loginCourierForLoginCheck = new CourierLogin(LOGIN, PASSWORD, null);//создаем объект для логина курьера
+        CourierLogin loginCourierForLoginCheck = new CourierLogin(user.getLogin(), user.getPassword(), null);//создаем объект для логина курьера
         this.courierId = given()
                 .contentType(ContentType.APPLICATION_JSON.getMimeType()) // заполнили header
                 .body(loginCourierForLoginCheck)

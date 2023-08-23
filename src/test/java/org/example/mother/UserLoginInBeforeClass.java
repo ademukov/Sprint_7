@@ -6,7 +6,7 @@ import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import org.junit.BeforeClass;
 
-public class FatherOfMother {
+public class UserLoginInBeforeClass {
 
     @BeforeClass
     public static void setupRAStaticParams() {
